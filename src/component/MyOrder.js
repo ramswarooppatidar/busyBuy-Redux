@@ -1,10 +1,17 @@
 
 import styles from "../styles/MyOrder.module.css"
 import { useState } from "react"
-import { useValue } from "../itemContext"
+
+
+import {useSelector, useDisptch} from "react-redux"
+import { addToCart, decreseQty, removeFromCart} from "../redux/actions/cartAction"
+
 // export const MyOrder=({cart, total, myOrder})=>{
     export const MyOrder=()=>{
-    const {total,cart, myOrder} = useValue()
+
+    // const {total,cart, myOrder} = useValue()
+    
+    const { total, cart, myOrder} = useSelector((state) => state.auth)
     console.log("myOrder components :",myOrder)
     if(!myOrder){
         return

@@ -1,14 +1,18 @@
 import { useState } from "react"
 import styles from "../styles/SignIn.module.css"
-import { useValue } from "../itemContext"
 import { toast } from "react-toastify"
 import { NavLink, useNavigate } from "react-router-dom"
+
+import { useSelector, useDispatch } from "react-redux";
+import { userCreate } from "../redux/actions/userAction";
+ 
 export const SignUp=()=>{
     const [name, setName] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const {createUser} = useValue()
+    // const {createUser} = useValue()
+    const dispatch = useDispatch();
 
     //Navogate 
     const nevigate = useNavigate();
@@ -27,7 +31,7 @@ export const SignUp=()=>{
         if(name ==="" && username === "" && password === ""){
             toast.error("Please Enter Name, Username and Password ")
         }else{
-            createUser(name, username, password);
+           dispatch(userCreate(name, username, password));
             // setName("");
             // setUsername("");
             // setPassword("")

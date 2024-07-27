@@ -1,10 +1,16 @@
 import styles from "../styles/Home.module.css"
 import { items } from "../data/data"
-import { useValue } from "../itemContext"
 import { useEffect, useState } from "react"
+
+import {useSelector, useDispatch} from "react-redux"
+import { addToCart} from "../redux/actions/cartAction"
+
 export const Home =()=>{
-    const {addToCart} = useValue()
-    const[price, setPrice] = useState(1000)
+    // const {addToCart} = useValue()
+    const {userId} = useSelector((state)=> state.auth)
+    console.log("inside home userId", userId)
+    const dispatch = useDispatch()
+    const[price, setPrice] = useState(35000)
     const[filter, setFilter] = useState({
         womenCloth:false,
         menCloth : false,
@@ -47,10 +53,11 @@ export const Home =()=>{
         <>
         <div className={styles.home}>
             <div className={styles.filter}>
+                <h1>redux-useddd</h1>
                 <h1>Filter</h1>
                 <h2>price: {price}</h2>
                 <input type="range" 
-                min="1000" max="150000"
+                min="35000" max="150000"
                 value={price}
                 onChange={handlePriceChanges}
                  />
@@ -104,7 +111,7 @@ export const Home =()=>{
                           <h2>Price {item.price}/-</h2>
                         </div>
                         <div>
-                            <button onClick={()=>{addToCart(item)}}>Add To Cart</button>
+                            <button onClick={()=>{dispatch(addToCart(item, userId))}}>Add To Cart</button>
                         </div>
                     </div>
                     )

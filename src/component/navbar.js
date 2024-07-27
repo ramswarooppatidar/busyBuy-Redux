@@ -1,16 +1,23 @@
 import { Outlet } from "react-router-dom"
 import styles from "../styles/Navbar.module.css"
 import { NavLink } from "react-router-dom";
-import { useValue } from "../itemContext";
+
+import {useSelector, useDispatch} from "react-redux"
+import { logout} from "../redux/actions/authAction"
+
 export const Navbar = ()=>{
-    const {authenticate, logout} = useValue()
+    // const {authenticate, logout} = useValue()
+
+    const {isAuthenticated} = useSelector((state) => state.user)
+    console.log("isAuthenticate ", isAuthenticated)
+    const dispatch = useDispatch();
     return(
         <>
             <div className={styles.navbar}>
                 <div className={styles.icon}>
                     <h1>BusyBuy</h1>
                 </div>
-              { authenticate ? (<div className={styles.pages}>
+              { isAuthenticated ? (<div className={styles.pages}>
                    <div className={styles.field}>
                         <div>
                             <img src="https://cdn-icons-png.flaticon.com/128/609/609803.png"/>  
@@ -51,7 +58,7 @@ export const Navbar = ()=>{
                             <img src="https://cdn-icons-png.flaticon.com/128/1716/1716282.png"/>  
                         </div>
                         <div>
-                           <NavLink onClick={() =>{logout()}} to='/' >
+                           <NavLink onClick={() =>{dispatch(logout())}} to='/' >
                                 <h2>Logout</h2>
                            </NavLink>
                         </div>

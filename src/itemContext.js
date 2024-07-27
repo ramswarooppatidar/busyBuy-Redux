@@ -27,41 +27,41 @@ function CustomItemContext({children}){
           }
     ])
 
-    useEffect( ()=>{
-         async function fetchData(){
-            try{
-                const docRef = collection(db, "user");
-                const docSnap = await getDocs(docRef)
+    // useEffect( ()=>{
+    //      async function fetchData(){
+    //         try{
+    //             const docRef = collection(db, "user");
+    //             const docSnap = await getDocs(docRef)
     
-                console.log("Document data:", docSnap);
-                const users = docSnap.docs.map((doc) => {
-                    return{
-                        id : doc.id,
-                        ...doc.data()
-                    }
-                })
-                console.log("inside useEffect user :", users)
-                console.log("inside useEffect userId  :", userId)
-                setUser(users)  
+    //             console.log("Document data:", docSnap);
+    //             const users = docSnap.docs.map((doc) => {
+    //                 return{
+    //                     id : doc.id,
+    //                     ...doc.data()
+    //                 }
+    //             })
+    //             console.log("inside useEffect user :", users)
+    //             console.log("inside useEffect userId  :", userId)
+    //             setUser(users)  
 
-                const matchingUser = users.find((usr) => usr.id === userId);
-                //setCart may not be correct it is set when user login
-                if (matchingUser) {
-                    setCart(matchingUser.cart);
-                    console.log("Cart set successfully:", matchingUser.cart);
-                    setMyOrder(matchingUser.myOrder)
-                    console.log("myOrder set successfully:", myOrder);
-                } else {
-                    console.log("No user found with ID:", userId);
-                }                      
-            }catch(error){
-                console.error("Error fetching users:", error);
-            }
+    //             const matchingUser = users.find((usr) => usr.id === userId);
+    //             //setCart may not be correct it is set when user login
+    //             if (matchingUser) {
+    //                 setCart(matchingUser.cart);
+    //                 console.log("Cart set successfully:", matchingUser.cart);
+    //                 setMyOrder(matchingUser.myOrder)
+    //                 console.log("myOrder set successfully:", myOrder);
+    //             } else {
+    //                 console.log("No user found with ID:", userId);
+    //             }                      
+    //         }catch(error){
+    //             console.error("Error fetching users:", error);
+    //         }
            
-         }
-         fetchData();
+    //      }
+    //      fetchData();
        
-    }, [userId])
+    // }, [userId])
 
     // addData firebase
     async function addToCart(item){
@@ -116,18 +116,7 @@ function CustomItemContext({children}){
             console.log('Cart updated from decrQtyFxn, failed');
         }
     }
-    const removeFromCart1 = (item) => {
-        const index = cart.findIndex((crt) => crt.id === item.id);
-        if (index === -1) {
-            return; // Item not found in cart
-        }
-        const itemTotalPrice = cart[index].qty * item.price; 
-        // Update the total by subtracting the total price of the item to be removed
-        setTotal(total - itemTotalPrice);
-        // Filter out the item to be removed from the cart
-        const updatedCart = cart.filter((crt) => crt.id !== item.id);
-        setCart(updatedCart);
-    };
+   
     //remove from cart Firebase
     const removeFromCart = async (item)=>{
         const index = cart.findIndex((crt) => crt.id === item.id);
@@ -204,9 +193,7 @@ function CustomItemContext({children}){
 
     const authenticateUser = async (username, password)=>{
         console.log("it is called successfully, username :", username +"password ", password)
-        // const foundUser = user.find((usr)=> usr.username === username && usr.password === password)
         
-        //fetch data from db not use use effect data
         const docRef = collection(db, "user")
         const docSnap = await getDocs(docRef)
         const allUsers = docSnap.docs.map((doc)=>{
@@ -233,10 +220,8 @@ function CustomItemContext({children}){
             }
     }
     //log out user
-    const logout = ()=>{
-        // const logoutUser = user.filter((usr) => usr.id !== userId)
-       // setUser(logoutUser)
-    setMyOrder([]) 
+    const logout = ()=>{     
+        setMyOrder([]) 
         setAuthenticate(false)
         
     }
