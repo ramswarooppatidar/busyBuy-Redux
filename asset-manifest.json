@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/busyBuy-Redux/static/css/main.b1247520.css",
+    "main.js": "/busyBuy-Redux/static/js/main.7289eec1.js",
+    "index.html": "/busyBuy-Redux/index.html",
+    "main.b1247520.css.map": "/busyBuy-Redux/static/css/main.b1247520.css.map",
+    "main.7289eec1.js.map": "/busyBuy-Redux/static/js/main.7289eec1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1247520.css",
+    "static/js/main.7289eec1.js"
+  ]
+}
