@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
 import { db } from "../../firebaseinit";
-import { collection, addDoc, getDoc, doc, getDocs, updateDoc } from "firebase/firestore/lite";
+import { getDoc, doc, updateDoc } from "firebase/firestore/lite";
 
 //import action from auth
-import { setMyOrder, setCart } from "./authAction";
+import { setCart } from "./authAction";
 import { SET_MY_ORDER } from "./authAction";
 
 
@@ -74,8 +74,6 @@ export const addToCart = (item, userId) => async (dispatch, getState) => {
     toast.error("Failed to update (add to cart) cart in Firestore");
   }
 };
-
-  
 
 export const decreseQty = (item, userId) => async (dispatch, getState) => {
   const { cart } = getState().cart;
@@ -169,107 +167,4 @@ export const purchase=(userId, cart)=>async (dispatch, getState)=>{
 }
 }
 
-
-
-
-
-
-
-
-
-
-// //action constant
-// import { toast } from "react-toastify";
-// export const ADD_TO_CART = "ADD_TO_CART";
-// export const DECRESE_QTY = "DECRESE_QTY";
-// export const REMOVE_FROM_CART ="REMOCE_FROM_CART";
-
-// //ACTION EXECUTE
-// export const addToCart_action=(item)=>({
-//     type : ADD_TO_CART,
-//     payload : item
-// })
-
-// export const decreseQty_acton=(item)=>({
-//     type: DECRESE_QTY,
-//     payload : item
-// })
-
-// export const removeFromCart_action=(item)=>({
-//     type : REMOVE_FROM_CART,
-//     payload : item
-// })
-// // import { db } from "./firebaseinit";
-// import { db } from "../../firebaseinit";
-// import { collection, addDoc, getDoc,doc, getDocs, updateDoc } from "firebase/firestore/lite";
-
-// const updateFireStoreCart= async (userId, updatedCart)=>{
-//     const docRef = doc(db, "user", userId);
-//     await updateDoc(docRef, { cart: updatedCart });
-//     console.log("Cart updated in Firestore");
-// }
-
-// export const addToCart=(item, userId)=> async (dispatch, getState)=>{
-//     const {cart} = getState().cart;
-//     const index = cart.findIndex((crt)=>crt.id == item.id);
-//     let updatedCart;
-//     if(index === -1){
-//         updatedCart = [...cart, {...item, qty : 1}]
-//     }else{
-//         updatedCart = [...cart]
-//         updatedCart[index] = { ...updatedCart[index], qty: updatedCart[index].qty + 1 };
-//     }
-//     try{
-//         await updateFireStoreCart(userId, updatedCart);
-//         dispatch({
-//             type : ADD_TO_CART,
-//             payload : {cart : updatedCart, itemPrice : item.price}
-//         })
-//     }catch (error) {
-//         console.log("Failed to update(add to cart) cart in Firestore", error);
-//         toast.error("Failed to update (add to cart) cart in Firestore");
-//     }
-// }
-// export const decreseQty=(item, userId)=> async (dispatch, getState)=>{
-//     const {cart} = getState().cart
-//     const index = cart.findIndex((crt) => crt.id = item.id);
-//     let updatedCart;
-//     if(cart[index].qty <= 1){
-//         dispatch(removeFromCart(item, userId));
-//         return;
-//     }
-//     if(index != -1){
-//         updatedCart[index] =[...cart]
-//         updatedCart[index] = {cart: updatedCart, qty:updatedCart[index].qty - 1 }
-//     }
-//     try{
-//         await updateFireStoreCart(userId, updatedCart);
-//         dispatch({
-//             type : DECRESE_QTY,
-//             payload : {cart : updatedCart, itemPrice : item.price}
-//         })
-//     }catch(error){
-//         console.log("Failed to update(decrese qty) cart in Firestore", error);
-//         toast.error("Failed to update(decrese qty) cart in Firestore");
-//     }
-
-// }
-// export const removeFromCart=(item, userId)=> async (dispatch, getState)=>{
-//     const {cart} = getState().cart;
-//     const index = cart.findIndex((crt)=> crt.id === item.id)
-//     const itemCost = cart[index].qty*item.price;
-//     const updatedCart = cart.filter((crt)=> crt.id !== item.id);
-
-//     try{
-//         await updateFireStoreCart(userId, updatedCart)
-//         dispatch({
-//             type : REMOVE_FROM_CART,
-//             payload : {cart : updatedCart, itemPrice : itemCost}
-//         })
-//     }catch(error){
-//         console.log("Failed to update(remove from cart) cart in Firestore", error);
-//         toast.error("Failed to update(remove from) cart in Firestore");
-
-//     }  
-// }
 

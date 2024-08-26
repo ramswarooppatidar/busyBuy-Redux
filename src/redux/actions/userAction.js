@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import { db } from "../../firebaseinit";
 import { collection, addDoc, getDoc,doc, getDocs, updateDoc } from "firebase/firestore/lite";
 import { authenticateUser } from "./authAction";
-import { useDispatch } from "react-redux";
 
 //action costant
 export const CREATE_USER = "CREATE_USER";

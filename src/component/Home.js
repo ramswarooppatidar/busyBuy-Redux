@@ -53,7 +53,6 @@ export const Home =()=>{
         <>
         <div className={styles.home}>
             <div className={styles.filter}>
-                <h1>redux-useddd</h1>
                 <h1>Filter</h1>
                 <h2>price: {price}</h2>
                 <input type="range" 
