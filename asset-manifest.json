@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.b1247520.css",
-    "main.js": "/static/js/main.5795a172.js",
-    "index.html": "/index.html",
-    "main.b1247520.css.map": "/static/css/main.b1247520.css.map",
-    "main.5795a172.js.map": "/static/js/main.5795a172.js.map"
+    "main.css": "/busyBuy-Redux/static/css/main.b1247520.css",
+    "main.js": "/busyBuy-Redux/static/js/main.7289eec1.js",
+    "index.html": "/busyBuy-Redux/index.html",
+    "main.b1247520.css.map": "/busyBuy-Redux/static/css/main.b1247520.css.map",
+    "main.7289eec1.js.map": "/busyBuy-Redux/static/js/main.7289eec1.js.map"
   },
   "entrypoints": [
     "static/css/main.b1247520.css",
-    "static/js/main.5795a172.js"
+    "static/js/main.7289eec1.js"
   ]
 }
