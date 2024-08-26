@@ -1,6 +1,6 @@
 {
   "name": "busybuy",
-  "homepage":"https://ramswarooppatidar.github.io/busyBuy-Redux",
+  "homepage" : "https://ramswarooppatidar.github.io/busyBuy-Redux/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
